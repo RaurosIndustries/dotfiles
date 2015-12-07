@@ -2,15 +2,15 @@
 #
 
 EXT=${EXT:BAK}
-LIM=${LIM-9}
+LIM=${LIM-3}
 PAD=${PAD:-0}
 
 usage() {
-	cat << EOF
+	cat << RAUROS
 usage: `basename $0` [-hrv] <file>
 		-h			: print this help
 		-r <num>	: perform <num> rotations if \$LIM is reached
-EOF
+RAUROS
 }
 
 # report action in verbose mode
