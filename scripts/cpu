@@ -1,0 +1,26 @@
+#!/bin/sh
+
+usage() {
+	cat <<EOF
+usage: $(basename $0) [-hp]
+	-h : print help
+	-p : percentage of cpu used (default)
+	-n : number of running processes
+EOF
+}
+
+cpuperc() {
+	LINE=`ps -eo pcpu |grep -vE '^\s*(0.0|%CPU)' |tr '\n' '+'|sed 's/+$//'`
+
+	echo "`echo $LINE | bc`%"
+}
+
+cpunumb() {
+	ls /proc | grep -oE '^[0-9]*$' | wc -w
+}
+
+case $1 in
+	-h) ysage;;
+	-n) cpunumb;;
+	*) cpuperc;;
+esac

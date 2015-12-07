@@ -1,0 +1,27 @@
+#!/bin/bash
+
+TODO=${TODO:-$HOME/.todo}
+
+list() {
+	# WOAH MUCH CLEVER!!
+	test -f $TODO && nl $TODO
+}
+
+append() {
+	# append all arguments "as-is" to the file
+	echo "$*" >> $TODO
+}
+
+delete() {
+	test -n "$1" || exit 1
+	sed -i "${1}d" $TODO
+}
+
+#delete line "$@" (see delete() function)
+test "$1" = '-d' && delete "$2" && exit 0
+
+# append arguments to the file, or print it otherwise
+test -n "$*" && append $* || list
+
+exit 0
+

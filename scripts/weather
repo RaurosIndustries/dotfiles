@@ -1,0 +1,14 @@
+#!/bin/bash
+# 
+# Rauros Industries - WTFPL 2015
+
+LOCATION=KDAA
+# station list at: http://www.rap.ucar.edu/weather/surface/stations.txt
+
+NEW=$(wget -qO- "http://www.weather.gov/data/current_obs/${LOCATION}.xml"\
+| sed -nr '/<(weather|temp_f)>/s/.*>(.*)<.*/\1/p' 2>/dev/null)
+if [ "x$NEW" != x ]; then
+	NEW=$(echo "$NEW" | awk 'BEGIN{RS="";FS="\n"}{printf "%s %s\xb0",$1,$2}')
+	echo -e "$NEW F" | tr -d '°'
+	echo "" # an empty line flushes data inside awesome
+fi

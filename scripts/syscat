@@ -1,0 +1,33 @@
+#!/bin/sh
+
+COLOR=${COLOR:-1}
+
+c() { printf '\e[1;3%sm' "$COLOR"; }
+d() { printf '\e[0;3%sm' "$COLOR"; }
+n() { printf '\e[0sm'; }
+
+cpuinfo() {
+	sed -n "/model\ name/s/^.*:\//p" /proc/cpuinfo | sed 1q
+}
+
+wmname() {
+	xprop -root WM_NAME | cut -d\" -f2
+}
+
+fontname() {
+	xrdb -query|sed "/^*font/s/^[^-]*-\*-\([^-]*\)-.*$/\1/p;d"
+}
+
+cat <<EOF
+$(c)SYSTEM   $(d)Manjaro
+$(c)KERNEL   $(d)$(uname -r)
+$(c)HOSTNAME $(d)$HOSTNAME
+$(c)WMNAME	 $(d)$(wmname)
+$(c)TERMINAL $(d)$TERM
+$(c)SHELL    $(d)$SHELL
+$(c)PKGCOUNT $(d)$(pacman -Q|wc -l)
+$(c)PROC	 $(d)$(cpu -p)
+$(c)MEMORY   $(d)$(free|awk '/Mem:/ {print int($3/$2 * 100.0)}')
+$(c)FONT	 $(d)$(fontname)
+EOF
+

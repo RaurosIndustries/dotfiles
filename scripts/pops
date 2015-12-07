@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+
+# bar options
+font="*-gohufont-medium-*-*--11-*-*-*-*-*-iso10646-1"
+bg="#ff1d1d1d"
+fg="#ffdfd5d2"
+
+x=$(wattr w `lsw -r`)
+y=$(wattr h `lsw -r`)
+
+width=180
+height=20
+swidth=186
+sheight=26
+
+offy=50
+offx=$(( x - 14 - $width ))
+geom=${width}x${height}+${offx}+${offy}
+
+soffy=47
+soffx=$(( x - 11 - $width ))
+sgeom=${swidth}x${sheight}+${soffx}+${soffy}
+
+lemonbar -d -g $sgeom -f $font -B $bg -F $fg
+
+skroll -r -n25 | lemonbar -d -g $geom -f $font -B $bg -F $fg 
