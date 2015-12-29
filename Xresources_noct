@@ -1,0 +1,76 @@
+#define FONT xft:gohufont:pixelsize=9:antialias=false:hinting=true
+
+!#include </home/permafrost/etc/theme/rawine>
+!#include </home/permafrost/etc/theme/autogen>
+!#include </home/permafrost/etc/theme/basque>
+!#include </home/permafrost/etc/theme/bow>
+!#include </home/permafrost/etc/theme/coconut>
+!#include </home/permafrost/etc/theme/flashy>
+#include </home/permafrost/etc/theme/froggy>
+!#include </home/permafrost/etc/theme/nightly>
+!#include </home/permafrost/etc/theme/paint>
+!#include </home/permafrost/etc/theme/rainy>
+!#include </home/permafrost/etc/theme/rubbish>
+!#include </home/permafrost/etc/theme/smokey>
+!#include </home/permafrost/etc/theme/spring>
+!#include </home/permafrost/etc/theme/woody>
+
+! transparency
+URxvt.transparent: true
+URxvt.shading: 16
+
+urxvt*cursorBlink:     true
+
+xft.antialias:         true
+urxvt*fadeColor:       #000000
+urxvt*keysym.Home:     \033[1~
+urxvt*keysym.End:      \033[4~
+urxvt*urlLauncher:     firefox
+urxvt*cursorUnderline: false
+urxvt*scrollBar:       false
+urxvt*saveLines:       0
+
+urxvt*cursorColor: #F74AC9
+urxvt.colorUL:     #4682B4
+
+!urxvt.font:        xft:gohufont:pixelsize=9:antialias=false:hinting=true
+*font: FONT
+!}}}
+
+*background: #1D1F21
+*foreground: #C5C8C6
+*cursorColor: #C3FF00
+
+! black
+!*color0: #282A2E
+!*color8: #373B41
+! red
+!*color1: #651729
+!*color9: #982928
+! green
+!*color2: #8C9440
+!*color10: #B5BD68
+! yellow
+!*color3: #BAA054
+!*color11: #F0C674
+! blue
+!*color4: #5F819D
+!*color12: #81A2BE
+! magenta
+!*color5: #85678F
+!*color13: #B294BB
+! cyan
+!*color6: #5E8D87
+!*color14: #8ABEB7
+! white
+!*color7: #707880
+!*color15: #DEDFC1
+
+URxvt.geometry:			90x24
+
+URxvt*perl-ext-common:		default,url-select,keyboard-select
+URxvt*url-select.launcher: /home/permafrost/bin/link-open
+URxvt*url-select.underline: true
+
+URxvt.keysym.M-a:		perl:url-select:select_next
+URxvt.keysym.M-w:		perl:keyboard-select:activate

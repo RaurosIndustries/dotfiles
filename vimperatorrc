@@ -1,0 +1,10 @@
+colorscheme twily
+
+set maxitems=20
+set titlestring=
+
+map <silent> <C-F9> :emenu Tools.Web Developer.Web Console<CR>
+map <silent> <C-F8> :js toggle_bottombar()<CR>
+
+map <silent> <J> :tabprevious
+map <silent> <K> :tabnext

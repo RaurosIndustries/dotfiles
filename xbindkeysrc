@@ -1,0 +1,32 @@
+"rofi -show run -font 'OhSnap 12' -fg '#C5C8C6' -bg '#282A2E' -hlfg '#A54252' -hlbg '#282A2E' -o 100"
+	mod4+d
+"menu"
+	mod4+shift+space
+
+"import -window root ~/usr/img/screen/$(date '+%Y%m%d-%H%M%S').png"
+	Print
+"xbindkeys_show" 
+  control+shift + q
+
+
+#
+# music stuff
+# corsair k65 version
+#
+"mpc toggle"
+  XF86AudioPlay
+"mpc random"
+  Mod4+XF86AudioPlay
+"mpc stop"
+  XF86AudioStop
+"mpc prev"
+  XF86AudioPrev
+"mpc next"
+  XF86AudioNext
+
+"~/bin/volume +"
+	XF86AudioRaiseVolume
+"~/bin/volume -"
+	XF86AudioLowerVolume
+"~/bin/volume !"
+	XF86AudioMute
