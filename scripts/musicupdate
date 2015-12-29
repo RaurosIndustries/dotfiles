@@ -1,0 +1,26 @@
+#!/bin/bash
+for (( ; ; ))
+do
+    #ART=`coverart`
+    
+    old="`mpc | head -n 1`"
+    sleep 2
+    new="`mpc | head -n 1`"
+    
+    if [ "`echo ${new} | grep volume | grep repeat | grep random`" != "" ] ; then
+        if [ "$old" != "$new" ] ; then
+			echo "MPD Plauback stopped" | pops
+        fi
+        old="$new"
+    fi
+    if [ "$old" != "$new" ] ; then
+
+        #COVERART=`coverart`
+        artist="`mpc current -f %artist%`"
+        album="`mpc current -f %album%`"
+        year="`mpc current -f %date%`"
+        song="`mpc current -f %title%`"
+        
+	echo "$artist - $song" | pops
+    fi
+done

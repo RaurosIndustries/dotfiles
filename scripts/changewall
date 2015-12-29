@@ -1,0 +1,17 @@
+#!/bin/sh
+
+WALLDIR=$HOME/usr/img/wp/bg.png
+
+setwall() {
+	WALL=$(readlink -f "$1")
+	ln -sf $WALL ~/usr/img/wp/bg.png
+	hsetroot -fill $WALL
+	#hsetroot -fill $WALL -blur 8 -write $HOME/.blur.png
+
+}
+
+test -n "$1" && setwall $1 && exit
+
+find $WALLDIR -name '*.png' | meh -list | while read WALL; do
+	setwall $WALL
+done

@@ -1,0 +1,20 @@
+#!/bin/sh
+
+PIDNAME=recorder
+FRAMERATE=25
+RES=$(wattr wh `lsw -r` | tr \  x)
+
+usage() {
+        echo "usage: $(basename $0) [-fk] <filename>" >&2
+        exit 1
+}
+
+case $1 in
+        -f) FRAMERATE=50; shift 1 ;;
+        -k) kill $(pidof -s $PIDNAME); exit 0 ;;
+esac
+
+test -n "$1" && WEBM=$1 || usage
+
+echo Framerate: $FRAMERATE
+exec -a $PIDNAME ffmpeg -f x11grab -s $RES -an -r $FRAMERATE -i :0.0 -c:v libvpx -b:v 5M -crf 10 -quality realtime -y -loglevel quiet $1
